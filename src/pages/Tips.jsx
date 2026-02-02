@@ -51,80 +51,85 @@ function Tips() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-app-bg flex items-center justify-center text-white">
-                <Loader2 className="animate-spin text-lime" size={48} />
+            <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-lime)' }}>
+                <div className="loader" style={{ animation: 'spin 1s linear infinite' }}>
+                    <Loader2 size={48} />
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-app-bg text-white pb-24">
+        <div className="tips-container">
             {/* Header */}
-            <header className="bg-navy py-6 px-4 shadow-lg sticky top-0 z-10 border-b border-white/10">
-                <div className="container mx-auto max-w-lg">
-                    <h1 className="text-2xl font-bold font-heading text-lime">
-                        Haus <span className="text-white">Dicas</span>
-                    </h1>
-                    <p className="text-sm text-gray-400 mt-1">inspiração para o seu projeto</p>
-                </div>
+            <header className="tips-header">
+                <h1 className="tips-title">Haus <span>Dicas</span></h1>
+                <p className="tips-subtitle">inspiração para o seu projeto</p>
             </header>
 
             {/* Content */}
-            <div className="container mx-auto max-w-lg p-4 space-y-6">
+            <div className="container">
                 {error && (
-                    <div className="bg-red-500/10 border border-red-500/30 text-red-200 p-4 rounded-lg">
+                    <div style={{
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        border: '1px solid rgba(239, 68, 68, 0.3)',
+                        color: '#f87171',
+                        padding: '1rem',
+                        borderRadius: '8px',
+                        marginBottom: '1.5rem'
+                    }}>
                         {error}
                     </div>
                 )}
 
-                {posts.map((post, index) => (
-                    <article
-                        key={index}
-                        className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group"
-                    >
-                        {/* Image */}
-                        <div className="relative h-48 overflow-hidden">
-                            <img
-                                src={getThumbnail(post)}
-                                alt={post.title}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                onError={(e) => { e.target.src = 'https://placehold.co/600x400/262942/D4FFAE?text=Archa' }}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
-                            <div className="absolute bottom-3 left-3 text-xs font-medium bg-lime text-navy px-2 py-1 rounded-full flex items-center gap-1">
-                                <Calendar size={12} />
-                                {formatDate(post.pubDate)}
+                <div className="tips-grid">
+                    {posts.map((post, index) => (
+                        <article key={index} className="tip-card">
+                            {/* Image */}
+                            <div className="tip-image-wrapper">
+                                <img
+                                    src={getThumbnail(post)}
+                                    alt={post.title}
+                                    className="tip-image"
+                                    onError={(e) => { e.target.src = 'https://placehold.co/600x400/262942/D4FFAE?text=Archa' }}
+                                />
+                                <div className="tip-date">
+                                    <Calendar size={12} />
+                                    {formatDate(post.pubDate)}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Body */}
-                        <div className="p-5">
-                            <h2 className="text-lg font-bold text-navy leading-tight mb-2 line-clamp-2">
-                                {post.title}
-                            </h2>
+                            {/* Body */}
+                            <div className="tip-content">
+                                <h2 className="tip-title">{post.title}</h2>
 
-                            <div
-                                className="text-gray-600 text-sm line-clamp-3 mb-4"
-                                dangerouslySetInnerHTML={{ __html: post.description.replace(/<img[^>]*>/g, '').substring(0, 150) + '...' }}
-                            />
+                                <div
+                                    className="tip-excerpt"
+                                    dangerouslySetInnerHTML={{ __html: post.description.replace(/<img[^>]*>/g, '').substring(0, 150) + '...' }}
+                                />
 
-                            <a
-                                href={post.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-lime transition-colors mt-auto"
-                            >
-                                Ler matéria completa
-                                <ExternalLink size={14} />
-                            </a>
-                        </div>
-                    </article>
-                ))}
+                                <a
+                                    href={post.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="tip-link"
+                                >
+                                    Ler matéria completa
+                                    <ExternalLink size={14} />
+                                </a>
+                            </div>
+                        </article>
+                    ))}
+                </div>
 
-                <div className="text-center text-gray-500 text-sm py-8">
+                <div style={{ textAlign: 'center', color: '#888', padding: '2rem 0', fontSize: '0.9rem' }}>
                     Conteúdo provido por Revista Haus
                 </div>
             </div>
+
+            <style>{`
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+      `}</style>
         </div>
     );
 }

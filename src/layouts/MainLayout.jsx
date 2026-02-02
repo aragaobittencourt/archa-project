@@ -1,13 +1,17 @@
 import { Outlet } from 'react-router-dom';
-import BottomNav from '../components/BottomNav';
+import Navigation from '../components/Navigation';
 
 const MainLayout = () => {
     return (
-        <div className="min-h-screen bg-app-bg">
-            <div className="pb-24"> {/* Padding bottom for fixed nav */}
+        <div className="min-h-screen bg-app-bg flex flex-col">
+            {/* Navigation (Renders Header on Desktop, Bottom Bar on Mobile) */}
+            <Navigation />
+
+            {/* Content Wrapper */}
+            {/* layout-padding-fix removes the bottom padding on desktop where the nav is at the top */}
+            <div className="layout-padding-fix" style={{ paddingBottom: '80px', flex: 1 }}>
                 <Outlet />
             </div>
-            <BottomNav />
         </div>
     );
 };
