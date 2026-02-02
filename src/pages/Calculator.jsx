@@ -409,12 +409,10 @@ function Calculator() {
                 </div>
               </div>
             </div>
-          </form>
 
-          {/* Result Gated by Validation */}
-          {result && isLeadValid ? (
-            <>
-              <div className="result-section">
+            {/* Steps 3 & 4 (Moved inside form) */}
+            {result && isLeadValid && (
+              <>
                 <h3 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Escolha seu Pacote</h3>
 
                 <div className="packages-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', marginBottom: '2rem' }}>
@@ -561,382 +559,316 @@ function Calculator() {
                 </div>
               </div>
 
-              {/* Architect Profile Selection (Moved) */}
-              <div className="form-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #eee' }}>
-                <label className="section-label">3. Selecione o Perfil do Arquiteto</label>
-                <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem', opacity: 0.8 }}>
-                  Escolha a categoria de profissionais para o seu projeto.
-                </p>
+            {/* Architect Profile Selection (Moved) */}
+            <div className="form-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #eee' }}>
+              <label className="section-label">3. Selecione o Perfil do Arquiteto</label>
+              <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem', opacity: 0.8 }}>
+                Escolha a categoria de profissionais para o seu projeto.
+              </p>
 
-                <div className="level-list">
-                  {ARCHITECT_LEVELS.map(level => (
-                    <div
-                      key={level.id}
-                      className={`level-card ${architectLevel === level.id ? 'selected' : ''}`}
-                      onClick={() => setArchitectLevel(level.id)}
-                    >
-                      <div className="level-icon-wrapper" style={{ backgroundColor: architectLevel === level.id ? level.color : '#eee' }}>
-                        <span className="level-icon">{level.icon}</span>
-                      </div>
-                      <div className="level-content">
-                        <h5 className="level-title">{level.label}</h5>
-                        <p className="level-desc">{level.description}</p>
-                      </div>
+              <div className="level-list">
+                {ARCHITECT_LEVELS.map(level => (
+                  <div
+                    key={level.id}
+                    className={`level-card ${architectLevel === level.id ? 'selected' : ''}`}
+                    onClick={() => setArchitectLevel(level.id)}
+                  >
+                    <div className="level-icon-wrapper" style={{ backgroundColor: architectLevel === level.id ? level.color : '#eee' }}>
+                      <span className="level-icon">{level.icon}</span>
                     </div>
-                  ))}
-                </div>
-
-                {/* Location Scope Selection */}
-                <div className="location-section" style={{ marginTop: '2rem' }}>
-                  <label className="section-label sub-label">Localidade do profissional:</label>
-                  <div className="location-options" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
-                    {/* Option 1: Brasil */}
-                    <div
-                      className={`location-card ${locationScope === 'brasil' ? 'selected' : ''}`}
-                      onClick={() => setLocationScope('brasil')}
-                      style={{
-                        padding: '2rem 1.5rem',
-                        borderRadius: '16px',
-                        border: locationScope === 'brasil' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        gap: '1.5rem',
-                        backgroundColor: locationScope === 'brasil' ? 'white' : 'white', // Keep white background, only border changes usually
-                        boxShadow: locationScope === 'brasil' ? '0 4px 12px rgba(212, 255, 174, 0.3)' : '0 2px 4px rgba(0,0,0,0.05)',
-                        transition: 'all 0.2s ease',
-                        height: '100%'
-                      }}
-                    >
-                      <div className="radio-circle" style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        border: locationScope === 'brasil' ? '2px solid var(--color-lime)' : '2px solid #ccc',
-                        backgroundColor: 'white',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        {locationScope === 'brasil' && <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'var(--color-lime)' }}></div>}
-                      </div>
-                      <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-navy)', lineHeight: '1.4' }}>
-                        Estou aberto<br />a escritórios<br />de todo Brasil
-                      </span>
+                    <div className="level-content">
+                      <h5 className="level-title">{level.label}</h5>
+                      <p className="level-desc">{level.description}</p>
                     </div>
-
-                    {/* Option 2: Region */}
-                    <div
-                      className={`location-card ${locationScope === 'region' ? 'selected' : ''}`}
-                      onClick={() => setLocationScope('region')}
-                      style={{
-                        padding: '2rem 1.5rem',
-                        borderRadius: '16px',
-                        border: locationScope === 'region' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        gap: '1.5rem',
-                        backgroundColor: locationScope === 'region' ? 'rgba(212, 255, 174, 0.05)' : 'white',
-                        boxShadow: locationScope === 'region' ? '0 4px 12px rgba(212, 255, 174, 0.3)' : '0 2px 4px rgba(0,0,0,0.05)',
-                        transition: 'all 0.2s ease',
-                        position: 'relative',
-                        height: '100%'
-                      }}
-                    >
-                      <div className="radio-circle" style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        border: locationScope === 'region' ? '2px solid var(--color-lime)' : '2px solid #ccc',
-                        backgroundColor: locationScope === 'region' ? 'var(--color-lime)' : 'white',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        {locationScope === 'region' && <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-navy)' }}></div>}
-                      </div>
-
-                      <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-navy)', lineHeight: '1.4' }}>
-                        Quero apenas<br />profissionais<br />da minha região
-                      </span>
-
-                      <div className="badge-extra" style={{
-                        marginLeft: 'auto',
-                        backgroundColor: '#8e44ad',
-                        color: 'white',
-                        borderRadius: '50%',
-                        width: '32px',
-                        height: '32px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1rem',
-                        fontWeight: 'bold',
-                        boxShadow: '0 2px 6px rgba(142, 68, 173, 0.4)',
-                        flexShrink: 0
-                      }}>
-
-                        $
-                      </div>
-                    </div>
-
                   </div>
-                </div>
-
+                ))}
               </div>
-              {/* Section 4: Add-ons */}
-              <div className="form-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #eee' }}>
-                <label className="section-label">4. O que você deseja para o novo espaço?</label>
-                <p style={{ color: 'var(--color-gray-400)', marginBottom: '1rem' }}>
-                  Selecione os itens que farão parte da sua reforma ou construção.
-                </p>
 
-                <div className="addons-grid" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {PROJECT_ADDONS.map(addon => {
-                    const Icon = iconMap[addon.icon] || Hammer;
-                    const isSelected = selectedAddons.includes(addon.id);
-                    return (
-                      <div
-                        key={addon.id}
-                        className={`addon-card ${isSelected ? 'selected' : ''}`}
-                        onClick={() => {
-                          if (isSelected) {
-                            setSelectedAddons(prev => prev.filter(id => id !== addon.id));
-                          } else {
-                            setSelectedAddons(prev => [...prev, addon.id]);
-                          }
-                        }}
-                        style={{
-                          padding: '1rem',
-                          borderRadius: '12px',
-                          border: isSelected ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '1rem',
-                          backgroundColor: isSelected ? 'rgba(212, 255, 174, 0.05)' : 'white',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        <div className="checkbox-box" style={{
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '6px',
-                          border: isSelected ? '2px solid var(--color-lime)' : '2px solid #ccc',
-                          backgroundColor: isSelected ? 'var(--color-lime)' : 'white',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0
-                        }}>
-                          {isSelected && (
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-navy)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
-                              <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                          )}
-                        </div>
+              {/* Location Scope Selection */}
+              <div className="location-section" style={{ marginTop: '2rem' }}>
+                <label className="section-label sub-label">Localidade do profissional:</label>
+                <div className="location-options" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 
-                        <div style={{ color: isSelected ? 'var(--color-lime)' : '#aaa', width: '24px', height: '24px' }}>
-                          <Icon size={24} />
-                        </div>
+                  {/* Option 1: Brasil */}
+                  <div
+                    className={`location-card ${locationScope === 'brasil' ? 'selected' : ''}`}
+                    onClick={() => setLocationScope('brasil')}
+                    style={{
+                      padding: '2rem 1.5rem',
+                      borderRadius: '16px',
+                      border: locationScope === 'brasil' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                      gap: '1.5rem',
+                      backgroundColor: locationScope === 'brasil' ? 'white' : 'white', // Keep white background, only border changes usually
+                      boxShadow: locationScope === 'brasil' ? '0 4px 12px rgba(212, 255, 174, 0.3)' : '0 2px 4px rgba(0,0,0,0.05)',
+                      transition: 'all 0.2s ease',
+                      height: '100%'
+                    }}
+                  >
+                    <div className="radio-circle" style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: locationScope === 'brasil' ? '2px solid var(--color-lime)' : '2px solid #ccc',
+                      backgroundColor: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      {locationScope === 'brasil' && <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: 'var(--color-lime)' }}></div>}
+                    </div>
+                    <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-navy)', lineHeight: '1.4' }}>
+                      Estou aberto<br />a escritórios<br />de todo Brasil
+                    </span>
+                  </div>
 
-                        <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>
-                          {addon.label}
-                        </span>
-                      </div>
-                    );
-                  })}
+                  {/* Option 2: Region */}
+                  <div
+                    className={`location-card ${locationScope === 'region' ? 'selected' : ''}`}
+                    onClick={() => setLocationScope('region')}
+                    style={{
+                      padding: '2rem 1.5rem',
+                      borderRadius: '16px',
+                      border: locationScope === 'region' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start',
+                      gap: '1.5rem',
+                      backgroundColor: locationScope === 'region' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                      boxShadow: locationScope === 'region' ? '0 4px 12px rgba(212, 255, 174, 0.3)' : '0 2px 4px rgba(0,0,0,0.05)',
+                      transition: 'all 0.2s ease',
+                      position: 'relative',
+                      height: '100%'
+                    }}
+                  >
+                    <div className="radio-circle" style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: locationScope === 'region' ? '2px solid var(--color-lime)' : '2px solid #ccc',
+                      backgroundColor: locationScope === 'region' ? 'var(--color-lime)' : 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      {locationScope === 'region' && <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-navy)' }}></div>}
+                    </div>
+
+                    <span style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-navy)', lineHeight: '1.4' }}>
+                      Quero apenas<br />profissionais<br />da minha região
+                    </span>
+
+                    <div className="badge-extra" style={{
+                      marginLeft: 'auto',
+                      backgroundColor: '#8e44ad',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '32px',
+                      height: '32px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1rem',
+                      fontWeight: 'bold',
+                      boxShadow: '0 2px 6px rgba(142, 68, 173, 0.4)',
+                      flexShrink: 0
+                    }}>
+
+                      $
+                    </div>
+                  </div>
+
                 </div>
+              </div>
 
-                {/* New Construction Subsection */}
-                <div className="new-construction-sub" style={{ marginTop: '2.5rem' }}>
-                  <label className="section-label sub-label" style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'block' }}>
-                    Você planeja construir uma nova área ou renovar fachadas?
-                  </label>
+            </div>
+            {/* Section 4: Add-ons */}
+            <div className="form-section" style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #eee' }}>
+              <label className="section-label">4. O que você deseja para o novo espaço?</label>
+              <p style={{ color: 'var(--color-gray-400)', marginBottom: '1rem' }}>
+                Selecione os itens que farão parte da sua reforma ou construção.
+              </p>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                    {/* Option Yes */}
+              <div className="addons-grid" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {PROJECT_ADDONS.map(addon => {
+                  const Icon = iconMap[addon.icon] || Hammer;
+                  const isSelected = selectedAddons.includes(addon.id);
+                  return (
                     <div
-                      onClick={() => setIsNewConstruction('yes')}
+                      key={addon.id}
+                      className={`addon-card ${isSelected ? 'selected' : ''}`}
+                      onClick={() => {
+                        if (isSelected) {
+                          setSelectedAddons(prev => prev.filter(id => id !== addon.id));
+                        } else {
+                          setSelectedAddons(prev => [...prev, addon.id]);
+                        }
+                      }}
                       style={{
-                        padding: '1.5rem',
+                        padding: '1rem',
                         borderRadius: '12px',
-                        border: isNewConstruction === 'yes' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                        border: isSelected ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '1rem',
-                        backgroundColor: isNewConstruction === 'yes' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                        backgroundColor: isSelected ? 'rgba(212, 255, 174, 0.05)' : 'white',
                         transition: 'all 0.2s ease'
                       }}
                     >
-                      <div className="radio-circle" style={{
+                      <div className="checkbox-box" style={{
                         width: '24px',
                         height: '24px',
-                        borderRadius: '50%',
-                        border: isNewConstruction === 'yes' ? '6px solid var(--color-lime)' : '2px solid #ccc', // Filled if yes
-                        backgroundColor: isNewConstruction === 'yes' ? 'var(--color-navy)' : 'white',
+                        borderRadius: '6px',
+                        border: isSelected ? '2px solid var(--color-lime)' : '2px solid #ccc',
+                        backgroundColor: isSelected ? 'var(--color-lime)' : 'white',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0
                       }}>
-                        {/* Inner dot logic if needed, simplify for now */}
+                        {isSelected && (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-navy)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        )}
+                      </div>
+
+                      <div style={{ color: isSelected ? 'var(--color-lime)' : '#aaa', width: '24px', height: '24px' }}>
+                        <Icon size={24} />
                       </div>
 
                       <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>
-                        Sim, eu planejo construir um novo ambiente
+                        {addon.label}
                       </span>
                     </div>
-
-                    {/* Option No */}
-                    <div
-                      onClick={() => setIsNewConstruction('no')}
-                      style={{
-                        padding: '1.5rem',
-                        borderRadius: '12px',
-                        border: isNewConstruction === 'no' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        backgroundColor: isNewConstruction === 'no' ? 'rgba(212, 255, 174, 0.05)' : 'white',
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      <div className="radio-circle" style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        border: isNewConstruction === 'no' ? '6px solid var(--color-lime)' : '2px solid #ccc',
-                        backgroundColor: isNewConstruction === 'no' ? 'var(--color-navy)' : 'white',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                      </div>
-
-                      <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>
-                        Não, eu não planejo construir um novo ambiente
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
 
-              {/* Deadline Subsection */}
-              <div className="deadline-sub" style={{ marginTop: '2.5rem' }}>
+              {/* New Construction Subsection */}
+              <div className="new-construction-sub" style={{ marginTop: '2.5rem' }}>
                 <label className="section-label sub-label" style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'block' }}>
-                  Em quantos dias você quer receber o seu projeto?
+                  Você planeja construir uma nova área ou renovar fachadas?
                 </label>
 
-                <div className="deadline-grid">
-                  {/* Option 15 Days */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                  {/* Option Yes */}
                   <div
-                    onClick={() => setDeadline('15')}
+                    onClick={() => setIsNewConstruction('yes')}
                     style={{
                       padding: '1.5rem',
                       borderRadius: '12px',
-                      border: deadline === '15' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                      border: isNewConstruction === 'yes' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
                       cursor: 'pointer',
                       display: 'flex',
-                      flexDirection: 'column',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.5rem',
-                      backgroundColor: deadline === '15' ? 'rgba(212, 255, 174, 0.05)' : 'white',
-                      transition: 'all 0.2s ease',
-                      position: 'relative'
+                      gap: '1rem',
+                      backgroundColor: isNewConstruction === 'yes' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                      transition: 'all 0.2s ease'
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', justifyContent: 'center' }}>
-                      <div className="radio-circle" style={{
-                        width: '20px',
-                        height: '20px',
-                        borderRadius: '50%',
-                        border: deadline === '15' ? '6px solid var(--color-lime)' : '2px solid #ccc',
-                        backgroundColor: deadline === '15' ? 'var(--color-navy)' : 'white',
-                        display: 'flex',
-                        marginRight: '0.5rem'
-                      }}></div>
-                      <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>15 dias</span>
-                      <div style={{
-                        backgroundColor: '#ff4d4d',
-                        borderRadius: '50%',
-                        width: '24px',
-                        height: '24px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        marginLeft: '0.5rem'
-                      }}>
-                        <TrendingUp size={14} strokeWidth={3} />
-                      </div>
+                    <div className="radio-circle" style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      border: isNewConstruction === 'yes' ? '6px solid var(--color-lime)' : '2px solid #ccc', // Filled if yes
+                      backgroundColor: isNewConstruction === 'yes' ? 'var(--color-navy)' : 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      {/* Inner dot logic if needed, simplify for now */}
                     </div>
+
+                    <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>
+                      Sim, eu planejo construir um novo ambiente
+                    </span>
                   </div>
 
-                  {/* Option 21 Days */}
+                  {/* Option No */}
                   <div
-                    onClick={() => setDeadline('21')}
+                    onClick={() => setIsNewConstruction('no')}
                     style={{
                       padding: '1.5rem',
                       borderRadius: '12px',
-                      border: deadline === '21' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                      border: isNewConstruction === 'no' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
                       gap: '1rem',
-                      backgroundColor: deadline === '21' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                      backgroundColor: isNewConstruction === 'no' ? 'rgba(212, 255, 174, 0.05)' : 'white',
                       transition: 'all 0.2s ease'
                     }}
                   >
                     <div className="radio-circle" style={{
-                      width: '20px',
-                      height: '20px',
+                      width: '24px',
+                      height: '24px',
                       borderRadius: '50%',
-                      border: deadline === '21' ? '6px solid var(--color-lime)' : '2px solid #ccc',
-                      backgroundColor: deadline === '21' ? 'var(--color-navy)' : 'white',
-                    }}></div>
-                    <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>21 dias</span>
-                  </div>
-
-                  {/* Option 28 Days */}
-                  <div
-                    onClick={() => setDeadline('28')}
-                    style={{
-                      padding: '1.5rem',
-                      borderRadius: '12px',
-                      border: deadline === '28' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
-                      cursor: 'pointer',
+                      border: isNewConstruction === 'no' ? '6px solid var(--color-lime)' : '2px solid #ccc',
+                      backgroundColor: isNewConstruction === 'no' ? 'var(--color-navy)' : 'white',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '1rem',
-                      backgroundColor: deadline === '28' ? 'rgba(212, 255, 174, 0.05)' : 'white',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
+                      flexShrink: 0
+                    }}>
+                    </div>
+
+                    <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>
+                      Não, eu não planejo construir um novo ambiente
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Deadline Subsection */}
+            <div className="deadline-sub" style={{ marginTop: '2.5rem' }}>
+              <label className="section-label sub-label" style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'block' }}>
+                Em quantos dias você quer receber o seu projeto?
+              </label>
+
+              <div className="deadline-grid">
+                {/* Option 15 Days */}
+                <div
+                  onClick={() => setDeadline('15')}
+                  style={{
+                    padding: '1.5rem',
+                    borderRadius: '12px',
+                    border: deadline === '15' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    backgroundColor: deadline === '15' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                    transition: 'all 0.2s ease',
+                    position: 'relative'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', justifyContent: 'center' }}>
                     <div className="radio-circle" style={{
                       width: '20px',
                       height: '20px',
                       borderRadius: '50%',
-                      border: deadline === '28' ? '6px solid var(--color-lime)' : '2px solid #ccc',
-                      backgroundColor: deadline === '28' ? 'var(--color-navy)' : 'white',
+                      border: deadline === '15' ? '6px solid var(--color-lime)' : '2px solid #ccc',
+                      backgroundColor: deadline === '15' ? 'var(--color-navy)' : 'white',
+                      display: 'flex',
+                      marginRight: '0.5rem'
                     }}></div>
-                    <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>28 dias</span>
+                    <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>15 dias</span>
                     <div style={{
-                      backgroundColor: '#4d79ff',
+                      backgroundColor: '#ff4d4d',
                       borderRadius: '50%',
                       width: '24px',
                       height: '24px',
@@ -946,39 +878,250 @@ function Calculator() {
                       color: 'white',
                       marginLeft: '0.5rem'
                     }}>
-                      <Percent size={14} strokeWidth={3} />
+                      <TrendingUp size={14} strokeWidth={3} />
                     </div>
                   </div>
                 </div>
-              </div>
-            </>
-          ) : (
-            <div className="result-section empty-state" style={{
-              opacity: 0.8,
-              justifyContent: 'center',
-              alignItems: 'center',
-              display: 'flex',
-              minHeight: '200px',
-              textAlign: 'center',
-              border: '2px dashed rgba(255,255,255,0.2)',
-              backgroundColor: isLeadValid ? 'var(--color-navy)' : 'var(--color-gray-100)',
-              color: isLeadValid ? 'white' : 'var(--color-dark-text)'
-            }}>
-              <div style={{ padding: '2rem' }}>
-                {!metragem || !ambientes ? (
-                  <p>Preencha os dados do projeto.</p>
-                ) : (
-                  <>
-                    <strong style={{ display: 'block', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                      Resultado Bloqueado
-                    </strong>
-                    <p>Complete seu cadastro corretamente para visualizar o investimento.</p>
-                  </>
-                )}
+
+                {/* Option 21 Days */}
+                <div
+                  onClick={() => setDeadline('21')}
+                  style={{
+                    padding: '1.5rem',
+                    borderRadius: '12px',
+                    border: deadline === '21' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    backgroundColor: deadline === '21' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <div className="radio-circle" style={{
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    border: deadline === '21' ? '6px solid var(--color-lime)' : '2px solid #ccc',
+                    backgroundColor: deadline === '21' ? 'var(--color-navy)' : 'white',
+                  }}></div>
+                  <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>21 dias</span>
+                </div>
+
+                {/* Option 28 Days */}
+                <div
+                  onClick={() => setDeadline('28')}
+                  style={{
+                    padding: '1.5rem',
+                    borderRadius: '12px',
+                    border: deadline === '28' ? '2px solid var(--color-lime)' : '1px solid #e0e0e0',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    backgroundColor: deadline === '28' ? 'rgba(212, 255, 174, 0.05)' : 'white',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <div className="radio-circle" style={{
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    border: deadline === '28' ? '6px solid var(--color-lime)' : '2px solid #ccc',
+                    backgroundColor: deadline === '28' ? 'var(--color-navy)' : 'white',
+                  }}></div>
+                  <span style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--color-navy)' }}>28 dias</span>
+                  <div style={{
+                    backgroundColor: '#4d79ff',
+                    borderRadius: '50%',
+                    width: '24px',
+                    height: '24px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    marginLeft: '0.5rem'
+                  }}>
+                    <Percent size={14} strokeWidth={3} />
+                  </div>
+                </div>
               </div>
             </div>
-          )}
-        </div>
+          </>
+            )}
+        </form>
+
+        {/* Result Section (Right Column) */}
+        {result && isLeadValid ? (
+          <div className="result-section">
+            <h3 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Escolha seu Pacote</h3>
+
+            <div className="packages-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', marginBottom: '2rem' }}>
+              {PACKAGES.map(pkg => {
+                const pkgValue = result.total * pkg.multiplier;
+                const isSelected = selectedPackage === pkg.id;
+
+                return (
+                  <div
+                    key={pkg.id}
+                    onClick={() => setSelectedPackage(pkg.id)}
+                    className={`package-card ${isSelected ? 'selected' : ''}`}
+                    style={{
+                      border: isSelected ? '2px solid var(--color-lime)' : '1px solid transparent',
+                      borderRadius: '12px',
+                      padding: '1.5rem',
+                      background: isSelected ? 'white' : 'rgba(255, 255, 255, 0.9)',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      transition: 'all 0.2s ease',
+                      color: 'var(--color-navy)', // Force dark text
+                      marginBottom: '0.5rem'
+                    }}
+                  >
+                    {pkg.recommended && (
+                      <div style={{
+                        position: 'absolute',
+                        top: '-12px',
+                        left: '1rem',
+                        background: 'var(--color-lime)',
+                        color: 'var(--color-navy)',
+                        padding: '0.25rem 0.75rem',
+                        borderRadius: '12px',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+                      }}>
+                        Recomendado
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                      <div>
+                        <h4 style={{ textTransform: 'uppercase', color: 'var(--color-navy)', margin: 0, fontWeight: 800 }}>{pkg.label}</h4>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 700, marginTop: '0.25rem', color: 'var(--color-navy)' }}>
+                          10x de {formatCurrency(pkgValue / 10)}
+                        </div>
+                        <div style={{ fontSize: '0.9rem', color: '#555' }}>
+                          ou à vista {formatCurrency(pkgValue * 0.85)} (15% OFF)
+                        </div>
+                      </div>
+                      <div className="radio-circle" style={{
+                        width: '24px',
+                        height: '24px',
+                        borderRadius: '50%',
+                        border: isSelected ? '6px solid var(--color-lime)' : '2px solid #ccc',
+                        backgroundColor: isSelected ? 'var(--color-navy)' : 'white',
+                      }}></div>
+                    </div>
+
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                      {pkg.benefits.map((benefit, idx) => (
+                        <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.5rem', fontSize: '0.9rem', color: '#444' }}>
+                          <Check size={16} color="var(--color-lime)" style={{ marginTop: '2px', flexShrink: 0 }} />
+                          <span style={{ color: '#333' }}>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="result-header" style={{ borderTop: '1px solid #eee', paddingTop: '1.5rem' }}>
+              <h3>Investimento Total ({PACKAGES.find(p => p.id === selectedPackage).label})</h3>
+              <div className="total-value">{formatCurrency(result.total * PACKAGES.find(p => p.id === selectedPackage).multiplier)}</div>
+            </div>
+
+            <div className="result-breakdown">
+              <div className="breakdown-item">
+                <span>Valor base p/ m²</span>
+                <strong>{formatCurrency(result.details.valM2)}</strong>
+              </div>
+              <div className="breakdown-item">
+                <span>Valor base p/ ambiente</span>
+                <strong>{formatCurrency(result.details.valEnv)}</strong>
+              </div>
+              <div className="breakdown-item" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
+                <span>Valor Base Total</span>
+                <strong>{formatCurrency(result.details.baseTotal)}</strong>
+              </div>
+              {architectLevel !== 'estreante' && (
+                <div className="breakdown-item" style={{ color: 'var(--color-lime)', marginTop: '0.5rem' }}>
+                  <span>Perfil {ARCHITECT_LEVELS.find(l => l.id === architectLevel)?.label}</span>
+                  <strong>+{Math.round((ARCHITECT_LEVELS.find(l => l.id === architectLevel)?.adjustment || 0) * 100)}%</strong>
+                </div>
+              )}
+              {locationScope === 'region' && (
+                <div className="breakdown-item" style={{ color: 'var(--color-lime)', marginTop: '0.25rem' }}>
+                  <span>Regional (+10%)</span>
+                  <strong>+{formatCurrency(result.total - (result.total / (1 + selectedAddons.reduce((acc, id) => acc + (PROJECT_ADDONS.find(a => a.id === id)?.adjustment || 0), 0)) / 1.10))}</strong>
+                </div>
+              )}
+              {selectedAddons.length > 0 && (
+                <div className="breakdown-item" style={{ color: 'var(--color-lime)', marginTop: '0.25rem' }}>
+                  <span>Adicionais ({selectedAddons.length})</span>
+                  <strong>+{formatCurrency(result.total - (result.total / (1 + selectedAddons.reduce((acc, id) => acc + (PROJECT_ADDONS.find(a => a.id === id)?.adjustment || 0), 0))))}</strong>
+                </div>
+              )}
+              {isNewConstruction === 'yes' && (
+                <div className="breakdown-item" style={{ color: 'var(--color-lime)', marginTop: '0.25rem' }}>
+                  <span>Nova Área/Fachada (+15%)</span>
+                  <strong>+{formatCurrency(result.total - (result.total / 1.15))}</strong>
+                </div>
+              )}
+              {deadline === '15' && (
+                <div className="breakdown-item" style={{ color: 'var(--color-lime)', marginTop: '0.25rem' }}>
+                  <span>Urgência 15 Dias (+30%)</span>
+                  <strong>+{formatCurrency(result.total - (result.total / 1.30))}</strong>
+                </div>
+              )}
+              {deadline === '28' && (
+                <div className="breakdown-item" style={{ color: '#aaa', marginTop: '0.25rem' }}>
+                  <span>Prazo Estendido 28 Dias (-5%)</span>
+                  <strong>{formatCurrency(result.total - (result.total / 0.95))}</strong>
+                </div>
+              )}
+              <div className="breakdown-item" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '0.5rem', marginTop: '0.5rem', color: 'var(--color-blue)' }}>
+                <span>Custo do Projeto (Sem taxas)</span>
+                <strong>{formatCurrency(result.details.projectCost)}</strong>
+              </div>
+
+              <div className="breakdown-note">
+                *O Investimento Estimado inclui taxas administrativas Archa (33%) e de agenciamento (25%).
+                <br />
+                *Valores estimados com base na tabela de referência.
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="result-section empty-state" style={{
+            opacity: 0.8,
+            justifyContent: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            minHeight: '200px',
+            textAlign: 'center',
+            border: '2px dashed rgba(255,255,255,0.2)',
+            backgroundColor: isLeadValid ? 'var(--color-navy)' : 'var(--color-gray-100)',
+            color: isLeadValid ? 'white' : 'var(--color-dark-text)'
+          }}>
+            <div style={{ padding: '2rem' }}>
+              {!metragem || !ambientes ? (
+                <p>Preencha os dados do projeto.</p>
+              ) : (
+                <>
+                  <strong style={{ display: 'block', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
+                    Resultado Bloqueado
+                  </strong>
+                  <p>Complete seu cadastro corretamente para visualizar o investimento.</p>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+    </div>
       </main >
     </div >
   );
