@@ -338,8 +338,9 @@ function Calculator() {
                     id="metragem"
                     value={metragem}
                     onChange={(e) => setMetragem(e.target.value)}
+                    onWheel={(e) => e.target.blur()}
                     placeholder="Ex: 50"
-                    min="0"
+                    min="20"
                   />
                 </div>
 
@@ -350,6 +351,7 @@ function Calculator() {
                     id="ambientes"
                     value={ambientes}
                     onChange={(e) => setAmbientes(e.target.value)}
+                    onWheel={(e) => e.target.blur()}
                     placeholder="Ex: 3"
                     min="0"
                   />
