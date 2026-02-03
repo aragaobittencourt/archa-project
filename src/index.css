@@ -730,3 +730,733 @@ body {
 .tip-link:hover {
   color: var(--color-blue);
 }
+
+/* =========================================
+   BAB Benfeitoria Page Styles
+   ========================================= */
+
+/* Benfeitoria accent colors */
+:root {
+  --bab-wine: #3E2323;
+  --bab-cream: #FAF9F5;
+  --bab-coral: #FF726F;
+}
+
+.benfeitoria-container {
+  padding-bottom: 6rem;
+  background-color: var(--bab-cream);
+}
+
+/* Hero Banner */
+.bab-hero {
+  background-color: var(--bab-wine);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.bab-hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bab-hero h1 {
+  font-family: var(--font-h);
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bab-hero h1 {
+    font-size: 2.8rem;
+  }
+}
+
+.bab-hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.bab-hero-date {
+  color: var(--bab-coral);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* Intro Section */
+.bab-intro {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--bab-wine);
+}
+
+.bab-intro-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.bab-intro-text {
+  font-size: 1rem;
+  opacity: 0.8;
+  line-height: 1.7;
+}
+
+/* Biome Navigation */
+.bab-biome-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(250, 249, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(62, 35, 35, 0.1);
+  padding: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.bab-biome-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.bab-biome-nav {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.bab-biome-nav-inner {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  min-width: max-content;
+}
+
+.bab-biome-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: rgba(62, 35, 35, 0.5);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.bab-biome-btn:hover {
+  color: var(--bab-wine);
+}
+
+.bab-biome-btn.active {
+  color: var(--bab-wine);
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  text-decoration-thickness: 2px;
+}
+
+/* Projects Content */
+.bab-projects-content {
+  padding: 0 2rem 6rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Biome Section */
+.bab-biome-section {
+  scroll-margin-top: 80px;
+  padding-top: 3rem;
+}
+
+.bab-biome-title {
+  font-family: var(--font-h);
+  font-size: 1.8rem;
+  color: var(--bab-wine);
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--bab-wine);
+}
+
+.bab-biome-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Project Card */
+.bab-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bab-project-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-color: #e5e5e5;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 768px) {
+  .bab-project-image-wrapper {
+    aspect-ratio: 2 / 1;
+  }
+}
+
+.bab-project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.bab-project-image-wrapper:hover .bab-project-image {
+  transform: scale(1.05);
+}
+
+.bab-project-details {
+  color: var(--bab-wine);
+  padding: 0 0.5rem;
+}
+
+.bab-project-meta {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(62, 35, 35, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.bab-project-meta span {
+  font-weight: 700;
+}
+
+.bab-project-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+.bab-support-btn {
+  display: inline-block;
+  background-color: var(--bab-coral);
+  color: var(--bab-wine);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+
+.bab-support-btn:hover {
+  background-color: #ff5c59;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+  .bab-support-btn {
+    display: block;
+    width: 100%;
+    padding: 1.2rem 2rem;
+  }
+}
+
+/* Biome Divider */
+.bab-biome-divider {
+  height: 1px;
+  background-color: rgba(62, 35, 35, 0.2);
+  margin-top: 4rem;
+}
+
+/* Project Count */
+.bab-project-count {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: var(--bab-wine);
+  opacity: 0.8;
+}
+
+/* Loading State */
+.bab-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--bab-wine);
+}
+
+.bab-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(62, 35, 35, 0.1);
+  border-left-color: var(--bab-wine);
+  border-radius: 50%;
+  animation: bab-spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes bab-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bab-loading p {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* Error State */
+.bab-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--bab-wine);
+}
+
+.bab-error p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.bab-error button {
+  background-color: var(--bab-coral);
+  color: var(--bab-wine);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bab-error button:hover {
+  background-color: #ff5c59;
+  transform: translateY(-2px);
+}
+
+/* ================================== */
+/* BAB Map Page Styles                */
+/* ================================== */
+
+.bab-map-container {
+  min-height: 100vh;
+  background-color: var(--bab-cream);
+  color: var(--bab-wine);
+}
+
+.bab-map-hero {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bab-map-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--bab-wine);
+  margin-bottom: 1rem;
+}
+
+.bab-map-hero p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--bab-wine);
+  opacity: 0.85;
+}
+
+.bab-map-image-section {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+
+.bab-map-main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.bab-map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1.5rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bab-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.bab-map-btn .bab-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.bab-map-btn-primary {
+  background-color: var(--bab-coral);
+  color: var(--bab-wine);
+}
+
+.bab-map-btn-primary:hover {
+  background-color: #ff5c59;
+  transform: translateY(-2px);
+}
+
+.bab-map-btn-secondary {
+  background-color: transparent;
+  color: var(--bab-wine);
+  border: 2px solid var(--bab-wine);
+}
+
+.bab-map-btn-secondary:hover {
+  background-color: var(--bab-wine);
+  color: var(--bab-cream);
+}
+
+/* Biomes Section */
+.bab-map-biomes {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bab-section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.bab-section-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--bab-wine);
+  margin-bottom: 1rem;
+}
+
+.bab-section-header p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--bab-wine);
+  opacity: 0.85;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bab-biome-cta {
+  margin-top: 1.5rem;
+}
+
+.bab-biome-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.bab-biome-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 2px solid var(--bab-wine);
+  color: var(--bab-wine);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bab-biome-btn:hover {
+  background-color: var(--biome-color, var(--bab-wine));
+  color: white;
+  border-color: var(--biome-color, var(--bab-wine));
+}
+
+.bab-biome-btn.active {
+  background-color: var(--biome-color, var(--bab-wine));
+  color: white;
+  border-color: var(--biome-color, var(--bab-wine));
+}
+
+.bab-biome-detail {
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--biome-color, var(--bab-wine));
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bab-biome-detail h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--bab-wine);
+  margin-bottom: 0.75rem;
+}
+
+.bab-biome-detail p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--bab-wine);
+  opacity: 0.9;
+}
+
+.bab-interactive-map {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Encontros Section */
+.bab-map-encontros {
+  background-color: var(--bab-wine);
+  color: var(--bab-cream);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.bab-map-encontros h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.bab-map-encontros p {
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Pátio Metrópole Section */
+.bab-map-patio {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bab-map-patio .bab-section-header {
+  margin-bottom: 2.5rem;
+}
+
+.bab-patio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.bab-patio-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bab-patio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.bab-patio-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.bab-patio-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bab-wine);
+  margin-bottom: 0.75rem;
+}
+
+.bab-patio-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--bab-wine);
+  opacity: 0.85;
+}
+
+/* Sponsors Section */
+.bab-map-sponsors,
+.bab-map-institutional {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bab-map-sponsors h2,
+.bab-map-institutional h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--bab-wine);
+  margin-bottom: 2rem;
+}
+
+.bab-sponsors-grid,
+.bab-institutional-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.bab-sponsor-placeholder {
+  width: 120px;
+  height: 60px;
+  background-color: rgba(70, 35, 35, 0.1);
+  border-radius: 8px;
+}
+
+.bab-sponsor-logo,
+.bab-institutional-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bab-sponsor-logo:hover,
+.bab-institutional-logo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.bab-sponsor-logo img {
+  max-width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+  filter: grayscale(0%);
+  transition: filter 0.3s ease;
+}
+
+.bab-institutional-logo img {
+  max-width: 140px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+.bab-sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bab-institutional-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bab-map-hero h1 {
+    font-size: 2rem;
+  }
+
+  .bab-map-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bab-map-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bab-biome-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .bab-patio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bab-sponsors-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .bab-sponsor-logo img {
+    max-width: 80px;
+    max-height: 40px;
+  }
+
+  .bab-institutional-logo img {
+    max-width: 100px;
+    max-height: 50px;
+  }
+}

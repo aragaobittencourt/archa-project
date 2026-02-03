@@ -1,0 +1,113 @@
+{
+    "name": "Sync Supabase Leads to Google Sheets",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "minutes",
+                            "minutes": 15
+                        }
+                    ]
+                }
+            },
+            "name": "Schedule",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "getAll",
+                "tableId": "leads_simulacoes",
+                "limit": 50,
+                "filters": {
+                    "created_at": {
+                        "operator": ">=",
+                        "value": "={{ $now.minus({ minutes: 20 }) }}"
+                    }
+                }
+            },
+            "name": "Supabase Get New Leads",
+            "type": "n8n-nodes-base.supabase",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "supabaseApi": {
+                    "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+                    "name": "Supabase account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "sheetId": "YOUR_SHEET_ID_HERE",
+                "range": "A:K",
+                "options": {
+                    "valueInputOption": "USER_ENTERED"
+                },
+                "columns": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "ID": "={{ $json.id }}",
+                        "Data": "={{ $json.created_at }}",
+                        "Nome": "={{ $json.nome }}",
+                        "Email": "={{ $json.email }}",
+                        "Telefone": "={{ $json.telefone }}",
+                        "Metragem": "={{ $json.metragem }}",
+                        "Tipo": "={{ $json.tipo_projeto }}",
+                        "Pacote": "={{ $json.pacote_selecionado }}",
+                        "Valor": "={{ $json.valor_investimento_total }}"
+                    },
+                    "matchingColumns": [],
+                    "schema": []
+                }
+            },
+            "name": "Google Sheets Append",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                650,
+                300
+            ],
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+                    "name": "Google Sheets account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Schedule": {
+            "main": [
+                [
+                    {
+                        "node": "Supabase Get New Leads",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Supabase Get New Leads": {
+            "main": [
+                [
+                    {
+                        "node": "Google Sheets Append",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

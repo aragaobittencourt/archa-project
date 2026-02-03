@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { Calculator, Lightbulb, LayoutDashboard } from 'lucide-react';
+import { Calculator, Lightbulb, Heart, Map } from 'lucide-react';
 
 const Navigation = () => {
     const navigate = useNavigate();
@@ -18,6 +18,18 @@ const Navigation = () => {
             label: 'Dicas',
             icon: Lightbulb,
             path: '/dicas'
+        },
+        {
+            id: 'map',
+            label: 'Mapa',
+            icon: Map,
+            path: '/mapa'
+        },
+        {
+            id: 'benfeitoria',
+            label: 'Benfeitoria',
+            icon: Heart,
+            path: '/benfeitoria'
         }
     ];
 
